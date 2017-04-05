@@ -94,27 +94,33 @@ int main(int argc,char** argv){
 		printf("Usage:%s sourceFile\n",argv[0]);
 	}
 	else{
-		freopen(argv[1], "r", stdin);
-		char c;
-		while((c = getchar())!= EOF){
-			if(strchr("<>+-[].,",c))
-				*cp++=c;
-			//ignore whitespace and unvalid character
-			else if(strchr(" \n\r\t",c))
-				continue;
-			else
-				printf("ignore unvalid character:%c\n",c);
+		void* result=freopen(argv[1], "r", stdin);
+		if(result){
+		    char c;
+		    while((c = getchar())!= EOF){
+		    	if(strchr("<>+-[].,",c))
+			    	*cp++=c;
+			    //ignore whitespace and unvalid character
+			    else if(strchr(" \n\r\t",c))
+			    	continue;
+		    	else
+		    		printf("ignore unvalid character:%c\n",c);
+		    }
+		    //reset
+		    cp=code;
+		    ins['>']=rShift;
+		    ins['<']=lShift;
+		    ins['+']=increase;
+		    ins['-']=decrease;
+		    ins[',']=input;
+		    ins['.']=output;
+		    ins['[']=begin;
+		    ins[']']=end;
+		    while(*cp) ins[*cp++]();
 		}
-		//reset
-		cp=code;
-		ins['>']=rShift;
-		ins['<']=lShift;
-		ins['+']=increase;
-		ins['-']=decrease;
-		ins[',']=input;
-		ins['.']=output;
-		ins['[']=begin;
-		ins[']']=end;
-		while(*cp) ins[*cp++]();
+		else{
+		    printf("can't open file:%s\n",argv[1]);
+		}
+		printf("\n");
 	}
 }
