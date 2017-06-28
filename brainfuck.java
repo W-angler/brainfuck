@@ -45,8 +45,9 @@ public class Brainfuck{
 			}
 		});
 		ins.put((byte)']',()->{
+			--sp;
 			if(data[dp]!=0){
-				cp=stack[--sp];
+				cp=stack[sp];
 			}
 		});
 	}

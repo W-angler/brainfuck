@@ -51,8 +51,9 @@ void begin(){
 	}
 }
 void end(){
+	--sp;
 	if(data[dp]){
-		cp=stack[--sp];
+		cp=stack[sp];
 	}
 }
 

@@ -86,7 +86,8 @@ void begin(){
  *end loop
  */
 void end(){
-	if(*dp) cp=*(--sp);
+	--sp;
+	if(*dp) cp=*(sp);
 }
 
 int main(int argc,char** argv){
