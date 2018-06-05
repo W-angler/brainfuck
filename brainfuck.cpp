@@ -13,7 +13,7 @@ const string whitespace=" \n\r\t";
 
 vector<char> code(CODE_LENGTH,0);
 vector<int> stack(STACK_FRAME,0);
-vector<char> data(DATA_LENGTH,0);
+vector<char> datas(DATA_LENGTH,0);
 
 int cp,sp,dp;
 
@@ -27,19 +27,19 @@ void lShift(){
     dp--;
 }
 void increase(){
-    data[dp]++;
+    datas[dp]++;
 }
 void decrease(){
-    data[dp]--;
+    datas[dp]--;
 }
 void input(){
-	cin>>data[dp];
+	cin>>datas[dp];
 }
 void output(){
-	cout<<data[dp];
+	cout<<datas[dp];
 }
 void begin(){
-	if(data[dp]){
+	if(datas[dp]){
 		stack[sp++]=cp-1;
 	}
 	else{
@@ -52,7 +52,7 @@ void begin(){
 }
 void end(){
 	--sp;
-	if(data[dp]){
+	if(datas[dp]){
 		cp=stack[sp];
 	}
 }
@@ -70,7 +70,7 @@ int main(int argc,char** argv){
 			else if(whitespace.find(c)!=string::npos)
 				continue;
 			else
-				cout<<("ignore unvalid character:"+c)<<endl;
+				cout<<"ignore unvalid character:"<<c<<endl;
 		}
 		cp=0;
 		in.close();
